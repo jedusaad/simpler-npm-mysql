@@ -1,0 +1,31 @@
+{
+  "name": "simpler-mysql",
+  "version": "0.0.1",
+  "description": "Simple module to wrap mysql library and make it simpler and easyer to work with! Using better structure for asyncronous functions on queries.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js",
+    "start": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jedusaad/simpler-npm-mysql.git"
+  },
+  "keywords": [
+    "mysql",
+    "simple-mysql",
+    "easy",
+    "mysql",
+    "easy-mysql"
+  ],
+  "author": "jedusaad",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/jedusaad/simpler-npm-mysql/issues"
+  },
+  "homepage": "https://github.com/jedusaad/simpler-npm-mysql#readme",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "mysql": "^2.16.0"
+  }
+}
