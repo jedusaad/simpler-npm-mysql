@@ -42,9 +42,15 @@ const chalk = require('chalk');
         // AFTER CONFIG IS SET CALLS THE QUERY
         return new Promise((resolve, reject) => {
             this.connection.query(sql, args, (err, rows) => {
-                if (err)
+                if (err){   
+                    this.close();
                     return reject(err);
-                resolve(rows);
+                }else{
+                    resolve(rows);
+                    if (close) {
+                        this.close();
+                    }
+                }
             });
         });
     }
