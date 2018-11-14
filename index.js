@@ -23,12 +23,15 @@ const chalk = require('chalk');
     }
 
     module.exports.query = async function (sql, args = null) {
+        // console.log("NEW QUERY");
+        
         // VAR THAT DEFINES IF CONNECTION WILL CLOSE AUTOMATICALLY :: DEFAULT :: TRUE
         var close = true;
         if (!this.connection) {
             if (this.configuration) {
+                // console.log('NO CONNECTION, CREATING NEW ONE');
                 // CONNECT TO DB
-                this.connection = mysql.createConnection(this.configuration);
+                await this.connect();
             }else{
                 // SEND ERROR TELLING THAT CANNOT CONNECT IF THERE IS NO CONFIGURATION
                 console.log(new Date().toISOString() + ' : ' + (chalk.red("Cannot execute a query without a connection or configuration!")));
@@ -42,16 +45,23 @@ const chalk = require('chalk');
         // AFTER CONFIG IS SET CALLS THE QUERY
         return new Promise((resolve, reject) => {
             this.connection.query(sql, args, (err, rows) => {
-                if (err)
+                if (err){   
                     return reject(err);
-                resolve(rows);
+                }else{
+                    return resolve(rows);
+                }
             });
+        }).then((result) => {
+            // console.log(result);
+            this.close();
+            return result;
         });
     }
 
-
     // CLOSING CONNECTION IF EXISTS    
     module.exports.close = async function() {
+        // console.log("CLOSING CONN");
+        
         if (this.connection) {
             return new Promise((resolve, reject) => {
                 this.connection.end(err => {
@@ -59,6 +69,7 @@ const chalk = require('chalk');
                         return reject(err);
                     resolve();
                 });
+                this.connection = null;
             });    
         }else{
             console.log(new Date().toISOString() + ' : ' + (chalk.yellow("Cannot close a connection that doesn't exists!")));
@@ -87,6 +98,8 @@ const chalk = require('chalk');
 
     // FUNCTION TO CONNECT TO THE DATABASE 
     module.exports.connect = async function(){
+        // console.log('STARTING CONN');
+        
         if (this.configuration) {
             this.connection = mysql.createConnection(this.configuration);
         }else{

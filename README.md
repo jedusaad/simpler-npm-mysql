@@ -28,3 +28,9 @@ $ sMysql.execute( 'SQL_WITH_PREPARE_?_STATEMENT_?_3' , [ arg1 , arg2 ] );
 $ sMysql.close();
 ```
 > Note: If you leave the connection open, it will overload your database with unecessary connections and maybe causing it to crash!
+
+---
+### Fixes 0.1.3 Version
+```
+ - Consecutive calls, breaking connection on sMysql.query();
+```
