@@ -1,10 +1,6 @@
 {
   "name": "simpler-mysql",
-<<<<<<< HEAD
   "version": "0.1.3",
-=======
-  "version": "0.1.1",
->>>>>>> c89eb9531db7d7a811d77f5f1ce5a5d9a7fafeba
   "description": "Simple module to wrap mysql library and make it simpler and easyer to work with! Using better structure for asyncronous functions on queries.",
   "main": "index.js",
   "scripts": {
