@@ -46,9 +46,19 @@ const chalk = require('chalk');
         return new Promise((resolve, reject) => {
             this.connection.query(sql, args, (err, rows) => {
                 if (err){   
+<<<<<<< HEAD
                     return reject(err);
                 }else{
                     return resolve(rows);
+=======
+                    this.close();
+                    return reject(err);
+                }else{
+                    resolve(rows);
+                    if (close) {
+                        this.close();
+                    }
+>>>>>>> c89eb9531db7d7a811d77f5f1ce5a5d9a7fafeba
                 }
             });
         }).then((result) => {
