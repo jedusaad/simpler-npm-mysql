@@ -34,3 +34,11 @@ $ sMysql.close();
 ```
  - Consecutive calls, breaking connection on sMysql.query();
 ```
+### Fixes 0.1.3 Version
+```
+ - sMysql.execute( 'SQL_WITH_PREPARE_?_STATEMENT_?_1' , [ arg1 , arg2 ] );
+    Always closing connection even when using 
+    
+    $ sMysql.connect();
+    $ sMysql.close();
+```
