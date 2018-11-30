@@ -53,7 +53,9 @@ const chalk = require('chalk');
             });
         }).then((result) => {
             // console.log(result);
-            this.close();
+            if (close) {
+                this.close();    
+            }
             return result;
         });
     }
