@@ -13,17 +13,17 @@ $ sMysql.config(host, user, password, database));
 Whit this done you have two options:
 The first is to work with single-queries connection, the library will connect to the database, do the transation and close the connection. 
 ```sh
-$ sMysql.execute('SQL_STATEMENT');
+$ sMysql.query('SQL_STATEMENT');
 // OR 
-$ sMysql.execute( 'SQL_WITH_PREPARE_?_STATEMENT_?' , [ arg1 , arg2 ] );
+$ sMysql.query( 'SQL_WITH_PREPARE_?_STATEMENT_?' , [ arg1 , arg2 ] );
 ```
 The second way is to connect, execute any amount of queries and then close the connection.
 ```sh
 $ sMysql.connect();
 // THEN  
-$ sMysql.execute( 'SQL_WITH_PREPARE_?_STATEMENT_?_1' , [ arg1 , arg2 ] );
-$ sMysql.execute( 'SQL_WITH_PREPARE_?_STATEMENT_?_2' , [ arg1 , arg2 ] );
-$ sMysql.execute( 'SQL_WITH_PREPARE_?_STATEMENT_?_3' , [ arg1 , arg2 ] );
+$ sMysql.query( 'SQL_WITH_PREPARE_?_STATEMENT_?_1' , [ arg1 , arg2 ] );
+$ sMysql.query( 'SQL_WITH_PREPARE_?_STATEMENT_?_2' , [ arg1 , arg2 ] );
+$ sMysql.query( 'SQL_WITH_PREPARE_?_STATEMENT_?_3' , [ arg1 , arg2 ] );
 // THEN
 $ sMysql.close();
 ```
