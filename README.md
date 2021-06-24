@@ -30,6 +30,11 @@ $ sMysql.close();
 > Note: If you leave the connection open, it will overload your database with unecessary connections and maybe causing it to crash!
 
 ---
+### Fixes 0.1.6 Experimental
+```
+ - Experimental items.
+```
+
 ### Fixes 0.1.5 Version
 ```
  - Read.me instructions , use sMysql.query() instead of sMysql.execute() but ;

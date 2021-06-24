@@ -1,0 +1,16 @@
+{
+    "select":"SELECT",
+    "update":"UPDATE",
+    "delete":"DELETE",
+    "insert":"INSERT",
+    "values":"VALUES",
+    "fieldlist":"{FIELDLIST}",
+    "from":"{TABLE}",
+    "whereFilters":"{WHEREFILTERS}",
+    "innerJoin":"{INNERJOINS}",
+    "innerJoinContent":"{JOIN}",
+    "orderBy":"{ORDERBY}",
+    "orderByContent":"{ORDERING}",
+    "sortBy":"{SORTBY}",
+    "sortByContent":"{SORTING}"
+}
