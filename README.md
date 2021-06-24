@@ -8,6 +8,7 @@ A package made to make your life easyer when dealing with MYSQL!
 $ var sMysql = require('simpler-mysql');
 
 $ sMysql.config(host, user, password, database));
+// sMysql.config also takes the port as a last parameter, but if not given, it will fall into 3306 (MySQL Default)
 ```
 
 Whit this done you have two options:

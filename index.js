@@ -13,12 +13,13 @@ const chalk = require('chalk');
     var connection = false;
 
     //CONFIGURATION FUNCTION TO SET UP CONNECTION INFO
-    module.exports.config = async function (host, user, password, database) {
+    module.exports.config = async function (host, user, password, database, port = 3306) {
         this.configuration = {
             host: host,
             user: user,
             password: password,
-            database: database
+            database: database,
+            port: port
         }
     }
 
