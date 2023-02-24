@@ -126,7 +126,7 @@ const chalk = require('chalk');
                     }
                 }, 5000);
             }
-            this.connection = mysql.createConnection(this.configuration);
+            // this.connection = mysql.createConnection(this.configuration);
         }else{
             console.log(new Date().toISOString() + ' : ' + (chalk.red("Cannot connect to a database without a configuration! ")));
             return null;
