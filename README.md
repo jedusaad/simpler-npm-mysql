@@ -31,6 +31,11 @@ $ sMysql.close();
 > Note: If you leave the connection open, it will overload your database with unecessary connections and maybe causing it to crash!
 
 ---
+### Fixes 0.1.6 Version
+```
+ - Connection now tries 3 times and logs error in chat. ;
+```
+
 ### Fixes 0.1.5 Version
 ```
  - Read.me instructions , use sMysql.query() instead of sMysql.execute() but ;

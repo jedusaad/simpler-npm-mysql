@@ -104,6 +104,28 @@ const chalk = require('chalk');
         // console.log('STARTING CONN');
         
         if (this.configuration) {
+            try {
+                this.connection = mysql.createConnection(this.configuration);
+            } catch (error) {
+                console.error(error);
+                console.error('Connection failed, new attempt in 5 seconds');
+                setTimeout(() => {
+                    try {
+                        this.connection = mysql.createConnection(this.configuration);
+                    } catch (error) {
+                        console.error(error);
+                        console.error('Attempt 2 of connection failed, new attempt in 5 seconds');
+                        setTimeout(() => {
+                            try {
+                                this.connection = mysql.createConnection(this.configuration);
+                            } catch (error) {
+                                console.error(error);
+                                console.error('Attempt 3 of connection failed, giving up connecting.');
+                            }
+                        }, 5000);
+                    }
+                }, 5000);
+            }
             this.connection = mysql.createConnection(this.configuration);
         }else{
             console.log(new Date().toISOString() + ' : ' + (chalk.red("Cannot connect to a database without a configuration! ")));
