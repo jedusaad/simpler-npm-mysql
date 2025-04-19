@@ -19,12 +19,13 @@ const sql_tags = require('./sqlTags.json');
     var currentBuildVariables = [];
 
     //CONFIGURATION FUNCTION TO SET UP CONNECTION INFO
-    module.exports.config = async function (host, user, password, database) {
+    module.exports.config = async function (host, user, password, database, port = 3306) {
         this.configuration = {
             host: host,
             user: user,
             password: password,
-            database: database
+            database: database,
+            port: port
         }
     }
 
@@ -52,6 +53,9 @@ const sql_tags = require('./sqlTags.json');
         return new Promise((resolve, reject) => {
             this.connection.query(sql, args, (err, rows) => {
                 if (err){   
+                    if (err.fatal) { 
+                        this.connect();
+                    }
                     return reject(err);
                 }else{
                     return resolve(rows);
@@ -109,7 +113,29 @@ const sql_tags = require('./sqlTags.json');
         // console.log('STARTING CONN');
         
         if (this.configuration) {
-            this.connection = mysql.createConnection(this.configuration);
+            try {
+                this.connection = mysql.createConnection(this.configuration);
+            } catch (error) {
+                console.error(error);
+                console.error('Connection failed, new attempt in 5 seconds');
+                setTimeout(() => {
+                    try {
+                        this.connection = mysql.createConnection(this.configuration);
+                    } catch (error) {
+                        console.error(error);
+                        console.error('Attempt 2 of connection failed, new attempt in 5 seconds');
+                        setTimeout(() => {
+                            try {
+                                this.connection = mysql.createConnection(this.configuration);
+                            } catch (error) {
+                                console.error(error);
+                                console.error('Attempt 3 of connection failed, giving up connecting.');
+                            }
+                        }, 5000);
+                    }
+                }, 5000);
+            }
+            // this.connection = mysql.createConnection(this.configuration);
         }else{
             console.log(new Date().toISOString() + ' : ' + (chalk.red("Cannot connect to a database without a configuration! ")));
             return null;
