@@ -31,6 +31,12 @@ $ sMysql.close();
 > Note: If you leave the connection open, it will overload your database with unecessary connections and maybe causing it to crash!
 
 ---
+### Fixes 0.1.8 Version
+```
+ - When fatal error occurs after a query attempt, connection is re-stablished and no longer stay broken and disconnected
+```
+
+---
 ### Fixes 0.1.7 Version
 ```
  - Connection now tries 3 times and logs error in chat. ;

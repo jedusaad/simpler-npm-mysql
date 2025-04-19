@@ -47,6 +47,9 @@ const chalk = require('chalk');
         return new Promise((resolve, reject) => {
             this.connection.query(sql, args, (err, rows) => {
                 if (err){   
+                    if (err.fatal) { 
+                        this.connect();
+                    }
                     return reject(err);
                 }else{
                     return resolve(rows);
